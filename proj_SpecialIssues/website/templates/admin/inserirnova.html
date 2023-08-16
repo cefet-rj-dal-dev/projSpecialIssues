@@ -1,9 +1,22 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 {% block content %}
 
-<div class = "text-center h1"> Inserir nova Special Issue</div>
-
-
+<div class = "text-center h1" style= "background-color: cadetblue; color: white;"> Inserir nova Special Issue </div>
+<div class="container">
+    
+    {% from "suporteenvio.html" import render_field %}
+    <form method="post" enctype="multipart/form-data">
+      <div>
+            {{ render_field(form.editora) }}
+            {{ render_field(form.revista) }}
+            {{ render_field(form.titulo) }}
+            {{ render_field(form.link) }}
+            {{ render_field(form.prazo) }}
+            {{ render_field(form.datanot) }}
+            {{ render_field(form.detalhes) }}
+      </div>
+      <p><input type=submit value="Enviar" class="btn btn-info" style="background-color: cadetblue; border-color: cadetblue; color:white;"></p>
+    </form></div>
 
 {% endblock content %}
