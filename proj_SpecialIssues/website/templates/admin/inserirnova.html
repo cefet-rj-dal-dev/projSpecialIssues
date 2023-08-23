@@ -3,20 +3,22 @@
 {% block content %}
 
 <div class = "text-center h1" style= "background-color: cadetblue; color: white;"> Inserir nova Special Issue </div>
-<div class="container">
+<div class="container my-4 ">
     
     {% from "suporteenvio.html" import render_field %}
     <form method="post" enctype="multipart/form-data">
-      <div>
-            {{ render_field(form.editora) }}
-            {{ render_field(form.revista) }}
-            {{ render_field(form.titulo) }}
-            {{ render_field(form.link) }}
-            {{ render_field(form.prazo) }}
-            {{ render_field(form.datanot) }}
-            {{ render_field(form.detalhes) }}
+      <div class="text-center">
+            {{ render_field(form.editora, class="form-control-sm", style="border: 1px solid cadetblue")}}
+            {{ render_field(form.revista, class="form-control-sm", style="border: 1px solid cadetblue") }}
+            {{ render_field(form.titulo, class="form-control-sm", style="border: 1px solid cadetblue") }}
+            {{ render_field(form.link, class="form-control-sm", style="border: 1px solid cadetblue") }}
+            {{ render_field(form.prazo, class="form-control-sm", style="border: 1px solid cadetblue") }}
+            {{ render_field(form.datanot, class="form-control-sm", style="border: 1px solid cadetblue") }}
+            {{ render_field(form.detalhes, class="form-control-sm", style="border: 1px solid cadetblue") }}
       </div>
-      <p><input type=submit value="Enviar" class="btn btn-info" style="background-color: cadetblue; border-color: cadetblue; color:white;"></p>
+      <p class="text-center"><input type=submit value="Enviar" class="btn btn-info" style="background-color: cadetblue; border-color: cadetblue; color:white;"></p>
     </form></div>
 
 {% endblock content %}
+
+<!--ATUALIZADO-->
