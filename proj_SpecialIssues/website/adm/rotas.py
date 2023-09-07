@@ -12,7 +12,7 @@ import os
 def home():
     return render_template ('admin/index.html', title= 'special issue')
 
-@app.route('/login', methods=['GET', 'POST']) #ATUALIZADO
+@app.route('/login', methods=['GET', 'POST']) #ATUALIZAR, FUNCIONANDO
 def loginform():
     form = login(request.form)
     if request.method == "POST" and form.validate():
@@ -20,25 +20,32 @@ def loginform():
         
         if user and user.senha == form.senha.data:
             session['usuario'] = form.usuario.data
-            flash(f'{form.usuario.data} entrou', 'message')
             return redirect(url_for('inserirnova'))
         else:
-            flash('Usuário não encontrado ou senha incorreta', 'message')
+            flash('Usuário não encontrado ou senha incorreta', 'danger')
             
     return render_template('admin/login.html', form=form, title='login')
     
-
+#Atualizar
 @app.route('/inserirnovaspecialissue', methods=['GET', 'POST']) #pagina de adicionar novas s.i
 def inserirnova():
-    form = RegistrationForm(request.form)
-    if request.method ==  'POST' and form.validate():
-        specialissue= SPI(editora=form.editora.data, revista=form.revista.data, titulo=form.titulo.data, link=form.link.data,prazo=form.prazo.data,datanot=form.datanot.data, detalhes=form.detalhes.data)
-        db.session.add(specialissue)
-        db.session.commit()
-        flash(f'Special Issue enviada!', 'message')
-        return redirect(url_for('home'))
-    return render_template('admin/inserirnova.html', form=form, title = "Página de envios")
+ 
+        form = RegistrationForm(request.form)
+        if request.method ==  'POST' and form.validate():
+            
+            
+            specialissue= SPI(editora=form.editora.data, revista=form.revista.data, titulo=form.titulo.data, link=form.link.data,prazo=form.prazo.data,datanot=form.datanot.data, detalhes=form.detalhes.data)
+            db.session.add(specialissue)
+            db.session.commit()
+            sucesso=True
+            if sucesso:
+                if 'submit_and_back' in request.form:
+                    return redirect('/')
+                elif 'submit_and_insert' in request.form:
+                    return render_template('admin/inserirnova.html', form=form)
+            else:
+                flash('todos os campos são obrigatórios!', 'danger')
+        
+        return render_template('admin/inserirnova.html', form=form, title = "Página de envios")
 
 
-        return redirect(url_for('home'))
-    return render_template('admin/inserirnova.html', form=form, title = "Página de envios")
