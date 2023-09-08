@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+{% include 'navbar.html' %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<div class="text-center h1" style="background-color: cadetblue; color: white;"> Inserir nova Special Issue </div>
+<div class="text-center h1" style="color: cadetblue;"> Inserir nova Special Issue </div>
 <div class="container my-4 ">
     {% include '_messages.html' %}
 
@@ -26,8 +27,8 @@
         </div>
         <p class="text-center">
             <div class="mt-3 text-center">
-                <button type="submit" name="submit_and_back" class="btn btn-primary" style="background-color: cadetblue; border-color: cadetblue; color:white;">Enviar e voltar ao Menu Principal</button>
-    <button type="submit" name="submit_and_insert" class="btn btn-success" style="background-color: cadetblue; border-color: cadetblue; color:white;">Enviar e Inserir Nova Special Issue</button>
+                <button type="submit" name="submit_and_back" class="btn btn-primary">Enviar e voltar ao Menu Principal</button>
+    <button type="submit" name="submit_and_insert" class="btn btn-success">Enviar e Inserir Nova Special Issue</button>
             </div>
         </p>
     </form>
@@ -37,6 +38,17 @@
     .resize-diagonal {
         resize: both;
         overflow: auto;
+    }
+    .btn {
+        background-color: cadetblue;
+        border-color: cadetblue;
+        color: white;
+        transition: background-color 0.5s; 
+    }
+    .btn:hover{
+        background-color: #2b8c8c;
+        border-color: #2b8c8c;;
+        color: white;
     }
 </style>
 
