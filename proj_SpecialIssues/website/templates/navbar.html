@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+.search-box {
+            margin-left: auto;
+            padding: 4px;
+            border: 1px solid #2b8c8c;
+            border-radius: 5px;
+            background-color: white;
+        }
+.search-box::placeholder {
+    font-size: 13px; 
+}
+.search-button {
+    background-color: cadetblue;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 5px 5px; 
+    transition: 0,3s;
+}
+.search-button:hover{
+    background-color: #2b8c8c;
+}
+
+/* Estilo do ícone de lupa */
+.search-button i {
+    font-size: 15px; /* Tamanho do ícone */
+}
+
+.navbar {
+    background-color: cadetblue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.navbar-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+.navbar-title h1 {
+    margin: 0;
+    font-size: 30px;
+   
+}
+
+.navbar-title p {
+    margin: 0;
+    font-size: 15px;
+    
+}
+
+.navbar-buttons a {
+    text-decoration: none;
+    color: white;
+    padding: 13px 20px;
+    margin-left: 10px;
+    transition: background-color 0.5s; 
+    border-radius: 5px
+    
+}
+
+.navbar-buttons a:hover {
+    background-color: #2b8c8c; 
+    
+}
+
+</style>
+    
+<title>Special Issues</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">
+            <h1>Special Issues</h1>
+            <p>Ciência da Computação</p>
+        </div>
+        <div class="navbar-buttons">
+            <a href="/" class="navbar-button">Home</a>
+            <a href="/login" class="navbar-button">Inserir Novas Special Issues</a>
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            <input type="text" class="search-box" placeholder="Pesquisar palavras-chave">
+            
+            
+        </div>
+    </nav>
+</body>
+
+{% include '_messages.html' %}
+
+{% endblock content %}
