@@ -1,11 +1,22 @@
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for category, message in messages %}
-      <li class="alert alert-{{ category }}">{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-
-<!--ATUALIZAR-->
+<style>
+  /* Reduza o tamanho da caixa das mensagens flash */
+  
+  .alert {
+      padding: 5px 10px; /* Ajuste o padding conforme necessário */
+      max-width: 300px;
+      list-style-type: none;
+      text-align: center;
+      position: absolute;
+      
+  }
+  </style>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="alert alert-{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
