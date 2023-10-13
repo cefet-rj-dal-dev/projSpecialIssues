@@ -2,26 +2,26 @@
 
 {% block content %}
 {% include 'navbar.html' %}
+{% include '_messages.html' %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<div class="text-center h1" style="color: cadetblue;"> Inserir nova Special Issue </div>
-<div class="container my-4 ">
-    {% include '_messages.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<div class="text-center h1 h1-bg" style="color: #0a497e; margin-top: 17px; font-size: 35px;"> Inserir nova Special Issue </div>
+<div class="container my-4">
 
     {% from "suporteenvio.html" import render_field %}
     <form method="post" enctype="multipart/form-data">
         <div class="text-center">
-            {{ render_field(form.editora, class="form-control-sm", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
-            {{ render_field(form.revista, class="form-control-sm", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
-            {{ render_field(form.titulo, class="form-control-sm", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
-            {{ render_field(form.link, class="form-control-sm", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
-            {{ render_field(form.prazo, class="form-control-sm datepicker", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
-            {{ render_field(form.datanot, class="form-control-sm datepicker", style="border: 1px solid cadetblue; width: 400px; border-radius: 5px") }}
+            {{ render_field(form.editora, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
+            {{ render_field(form.revista, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
+            {{ render_field(form.titulo, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
+            {{ render_field(form.link, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
+            {{ render_field(form.prazo, class="form-control-sm datepicker", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
+            {{ render_field(form.datanot, class="form-control-sm datepicker", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px") }}
             <div class="text-center">
                 <label for="{{ form.detalhes.id }}" style="font-weight: bold;">Detalhes</label>
             </div>
             <div class="text-center">
-                <textarea name="{{ form.detalhes.name }}" id="{{ form.detalhes.id }}" class="form-control-sm resize-diagonal" style="border: 1px solid cadetblue; min-width: 400px; min-height: 200px; width: 400px; border-radius: 5px" rows="3">{{ form.detalhes.data }}</textarea>
+                <textarea name="{{ form.detalhes.name }}" id="{{ form.detalhes.id }}" class="form-control-sm resize-diagonal" style="border: 1px solid #0a497e; min-width: 500px; min-height: 200px; width: 500px; border-radius: 5px" rows="3">{{ form.detalhes.data }}</textarea>
             </div>
             
         </div>
@@ -40,15 +40,29 @@
         overflow: auto;
     }
     .btn {
-        background-color: cadetblue;
-        border-color: cadetblue;
+        background-color: #0a497e;
+        border-color: #0a497e;
         color: white;
         transition: background-color 0.5s; 
     }
     .btn:hover{
-        background-color: #2b8c8c;
-        border-color: #2b8c8c;;
+        background-color: #113a5c;
+        border-color: #113a5c;;
         color: white;
+    }
+    .h1-bg {
+        font-size: 40px;
+        text-align: center;
+        position: relative;
+    }
+    .h1-bg::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, white, #0a497e, white); 
     }
 </style>
 
