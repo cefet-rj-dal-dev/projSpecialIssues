@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<div class="text-center h1 h1-bg" style="color: #0a497e; margin-top: 17px; font-size: 35px;"> Editar Special Issue </div>
+<div class="container my-4">
+
+    {% from "suporteenvio.html" import render_field %}
+    <form method="post" enctype="multipart/form-data">
+        <div class="text-center">
+            {{ render_field(form.editora, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px", value=spi.editora)}}
+            {{ render_field(form.revista, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px", value=spi.revista)}}
+            {{ render_field(form.titulo, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px", value=spi.titulo)}}
+            {{ render_field(form.link, class="form-control-sm", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px", value=spi.link)}}
+            {{ render_field(form.prazo, class="form-control-sm datepicker", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px",value=spi.prazo) }}
+            {{ render_field(form.datanot, class="form-control-sm datepicker", style="border: 1px solid #0a497e; width: 500px; border-radius: 5px", value=spi.datanot)}}
+            
+        </div>
+        <p class="text-center">
+            <div class="mt-3 text-center">
+                <button type="submit" name="update" class="btn btn-primary">Editar</button>
+    <button type="submit" name="cancel" class="btn btn-success">Cancelar</button>
+            </div>
+        </p>
+    </form>
+</div>
+<style>
+    /* Estilo para permitir redimensionamento diagonal */
+    .resize-diagonal {
+        resize: both;
+        overflow: auto;
+    }
+    .btn {
+        background-color: #0a497e;
+        border-color: #0a497e;
+        color: white;
+        transition: background-color 0.5s; 
+    }
+    .btn:hover{
+        background-color: #113a5c;
+        border-color: #113a5c;;
+        color: white;
+    }
+    .h1-bg {
+        font-size: 40px;
+        text-align: center;
+        position: relative;
+    }
+    .h1-bg::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, white, #0a497e, white); 
+    }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      flatpickr(".datepicker", {
+          dateFormat: "d/m/Y" 
+          appendTo: document.querySelector('.datepicker-wrapper') 
+
+      });
+  });
+</script>
+{% endblock content %}
