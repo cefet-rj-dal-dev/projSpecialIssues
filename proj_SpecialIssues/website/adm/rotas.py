@@ -1,5 +1,6 @@
 
-from flask import render_template, session, request, url_for, flash, redirect
+#atualizado 07/12
+from flask import render_template, session, request, url_for, flash, redirect, Flask
 from website import app, db, bcrypt
 from .forms import RegistrationForm, login
 from .models import SPI, users
@@ -14,7 +15,34 @@ def home():
         flash (f'Login necessário', 'danger')
         return redirect(url_for('loginform'))
     else:
-        return render_template ('admin/index.html', title= 'special issue')
+        per_page=10
+        page=request.args.get('page',type=int, default=1)
+        specialissues= SPI.query.order_by(SPI.prazo.asc()).paginate(page=page, per_page=per_page)       
+        
+    return render_template ('admin/home.html', title= 'gerenciar', specialissues= specialissues)
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        form = request.form
+        search_value = form['search-box']
+        session['search_value'] = search_value  # Armazena na sessão
+        search = f"%{search_value}%"
+        specialissues = SPI.query.filter(SPI.titulo.like(search)).paginate(page=1, per_page=10)
+        return render_template('admin/busca.html', specialissues=specialissues, search_value=search_value)
+    else:
+        page = request.args.get('page', 1, type=int)
+        per_page = 10
+
+        search_value = session.get('search_value', '')  # Obtém da sessão
+        if page == 1 and search_value:
+            specialissues = SPI.query.filter(SPI.titulo.like(f"%{search_value}%")).paginate(page=1, per_page=10)
+        else:
+            specialissues = SPI.query.paginate(page=page, per_page=per_page)
+
+    return render_template('admin/busca.html', specialissues=specialissues, search_value=search_value)
+
 
 @app.route('/', methods=['GET', 'POST']) 
 def loginform():
@@ -29,6 +57,8 @@ def loginform():
             flash('Usuário não encontrado ou senha incorreta', 'danger')
             
     return render_template('admin/login.html', form=form, title='login')
+
+    
     
 
 @app.route('/inserirnovaspecialissue', methods=['GET', 'POST']) #pagina de adicionar novas s.i
@@ -62,6 +92,19 @@ def gerenciar():
         specialissues= SPI.query.all()       
         
     return render_template ('admin/gerenciar.html', title= 'gerenciar', specialissues= specialissues)
+
+@app.route('/detalhes/<int:id>', methods=['GET'])
+def detalhes(id):
+    if 'usuario' not in session:
+        flash('Login necessário', 'danger')
+        return redirect(url_for('loginform'))
+    else:
+        spi = SPI.query.get(id)
+        if spi:
+            return render_template('admin/detalhes.html', spi=spi, title='Detalhes do Special Issue')
+        else:
+            flash('Special Issue não encontrado', 'danger')
+            return redirect('/gerenciar')
 
 @app.route('/editar/<int:id>', methods=['GET', 'POST']) 
 def editar(id):
@@ -115,4 +158,3 @@ def deletar(id):
         flash('Special Issue excluída!', 'success') 
         return redirect('/gerenciar')
     return render_template('admin/gerenciar.html', spi=spi)
-
