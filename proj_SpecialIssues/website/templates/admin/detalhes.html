@@ -1,0 +1,33 @@
+<!--atualizar no meu pc-->
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<style>
+    .container h1{
+        font-size: xx-large;
+        margin-top: 15px;
+        color: #0a497e;
+        margin-bottom: 15px;
+    }
+    .container b{
+        color: #0a497e;
+        
+    }
+
+</style>
+
+
+
+<div class="container">
+    <h1>{{ spi.titulo }}</h1>
+    <p><b>Prazo para submissão:</b> {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+    <p><b>Data de Notificação:</b> {{ spi.datanot.strftime('%d/%m/%Y') }}</p>
+    <p><b>Editora:</b> {{ spi.editora }}</p>
+    <p><b>Revista:</b> {{ spi.revista }}</p>
+    <p><b>Link: </b>{{ spi.link }}</p>
+    <p><b>Detalhes:</b> {{ spi.detalhes }}</p>
+    
+</div>
+
+{% endblock content %}
