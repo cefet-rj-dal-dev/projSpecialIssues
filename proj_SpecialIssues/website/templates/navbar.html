@@ -1,87 +1,113 @@
 {% extends 'layout.html' %}
 {% block content %}
-
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-}
-.search-box {
-            margin-left: auto;
-            padding: 4px;
-            border: 1px solid #2b8c8c;
-            border-radius: 5px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Issues</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
             background-color: white;
         }
-.search-box::placeholder {
-    font-size: 13px; 
-}
-.search-button {
-    background-color: #0a497e;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    padding: 5px 5px; 
-    transition: 0,3s;
-}
-.search-button:hover{
-    background-color: #113a5c;
-}
 
-/* Estilo do ícone de lupa */
-.search-button i {
-    font-size: 15px; /* Tamanho do ícone */
-}
-
-.navbar {
-    background-color: #0a497e;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 2px 2px 2px #ccc;
-}
-.navbar-title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        .search-form {
+        display: flex; /* Torna os elementos filhos flexíveis para alinhamento */
+        align-items: center; /* Alinha verticalmente ao centro */
         }
-.navbar-title h1 {
-    margin: 0;
-    font-size: 30px;
-   
-}
 
-.navbar-title p {
-    margin: 0;
-    font-size: 15px;
-    
-}
 
-.navbar-buttons a {
-    text-decoration: none;
-    color: white;
-    padding: 13px 20px;
-    margin-left: 10px;
-    transition: background-color 0.5s; 
-    border-radius: 5px
-    
-}
+        .form-control{
+            margin-right: 10px; 
+            padding: 4px;
+            border: 1px;
+            border-radius: 5px;
+            background-color: white;
+            width: 180px;
+            align-items: center;
+            
+            
+        }
 
-.navbar-buttons a:hover {
-    background-color: #113a5c; 
-    
-}
+        .form-control::placeholder {
+            font-size: 13px;
+            text-align:left;
+        }
 
-</style>
-    
-<title>Special Issues</title>
+        .search-button {
+            background-color: #0a497e;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            padding: 7px 5px;
+            transition: 0.3s;
+            margin-left: 10px;
+            margin-right: 5px;
+            
+        }
+
+        .search-button:hover {
+            background-color: #113a5c;
+            border-radius: 25px;
+        }
+
+        
+        .search-button i {
+            font-size: 15px; 
+        }
+
+        .navbar {
+            background-color: #0a497e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 20px;
+            box-shadow: 2px 2px 2px #ccc;
+        }
+
+        .navbar-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar-title h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .navbar-title p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .navbar-buttons {
+            display: flex; /* Para criar um layout flexível */
+            align-items: center; /* Para alinhar verticalmente os elementos */
+        }
+
+        .navbar-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 7px 20px;
+            margin-left: 15px;
+            transition: background-color 0.5s;
+            border-radius: 20px;
+
+            
+        }
+
+        .navbar-buttons a:hover {
+            background-color: #033863;
+        }
+    </style>
 </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <body>
     <nav class="navbar">
         <div class="navbar-title">
@@ -91,15 +117,18 @@ body {
         <div class="navbar-buttons">
             <a href="/home" class="navbar-button">Home</a>
             <a href="/inserirnovaspecialissue" class="navbar-button">Inserir Novas Special Issues</a>
-            <a href="/gerenciar"class="navbar-button">Gerenciar Special Issues</a>
-            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-            <input type="text" class="search-box" placeholder="Pesquisar palavras-chave">
-            
-            
+            <a href="/gerenciar" class="navbar-button">Gerenciar Special Issues</a>
+           
+            <form action="{{ url_for('search') }}" method="POST">
+                <div class="search-form">
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Pesquisar palavras-chave" autofocus="autofocus" name="search-box" value="{{ session.get('search_value', '') }}">
+                </div>
+            </form>
+
         </div>
     </nav>
 </body>
-
 {% include '_messages.html' %}
-
+</html>
 {% endblock content %}
