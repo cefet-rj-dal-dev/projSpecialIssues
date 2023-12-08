@@ -81,14 +81,14 @@
                 <td>{{ spi.prazo.strftime('%d/%m/%Y') }}</td>
                 <td>{{ spi.datanot.strftime('%d/%m/%Y') }}</td>
                 <td>
-                    <form action="/editar/{{ spi.id }}">
+                    <form action="/admin/editar/{{ spi.id }}">
                         <button type="submit" name="editar" class="btn btn-control btn-sm">
                             <i class="fas fa-pencil-alt"></i>
                         </button>
                     </form>
                 </td>
                 <td>
-                    <form action="/deletar/{{ spi.id }}" method="POST" onsubmit="return confirmDelete();">
+                    <form action="/admin/deletar/{{ spi.id }}" method="POST" onsubmit="return confirmDelete();">
                         <button type="submit" name="deletar" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>
                         </button>

@@ -11,7 +11,7 @@
 
     .container a {
         color: #0a497e;
-        font-size:22px;
+        font-size: 22px;
         margin-top: 50px;
         text-decoration: none; 
     }
@@ -27,12 +27,20 @@
         font-size: 15px;
     }
 
+    .container .aviso{
+        margin-bottom: 10px; 
+        display: block; 
+        margin-top: 25px;
+        font-size: 20px;
+    }
+
+
     .container .special-issue {
         margin-bottom: 10px; 
         display: block; 
         margin-top: 25px;
     }
-    .col{
+    .col {
         text-align: center;
     }
     .container .col a.btn-outline-primary {
@@ -43,9 +51,7 @@
         text-decoration: none;
         width: 25px; 
         height: 30px; 
-        
         font-size: medium;
-        
     }
 
     .container .col a.btn-outline-primary:hover {
@@ -53,6 +59,7 @@
         border-color: #0a497e;
         color: white; 
     }
+
     .container .col a.btn-primary {
         background-color: #0a497e;
         border-color: #0a497e;
@@ -61,21 +68,23 @@
         text-decoration: none;
         width: 25px; 
         height: 30px; 
-        
         font-size: medium;
-        
     }
    
 </style>
 
 <div class="container">
     <ul>
-        {% for spi in specialissues.items %}
-            <li class="special-issue">
-                <h3><a href="/detalhes/{{ spi.id }}">{{ spi.titulo }}</a></h3>
-                <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
-            </li>
-        {% endfor %}
+        {% if specialissues.items %}
+            {% for spi in specialissues.items %}
+                <li class="special-issue">
+                    <h3><a href="{{ url_for('detalhes', id=spi.id) }}">{{ spi.titulo }}</a></h3>
+                    <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="aviso">Sem resultados para essa pesquisa</li>
+        {% endif %}
     </ul>
 
     <div class="col">

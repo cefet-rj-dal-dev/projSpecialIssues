@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Issues</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        .search-form {
+            display: flex; /* Torna os elementos filhos flexíveis para alinhamento */
+            align-items: center; /* Alinha verticalmente ao centro */
+        }
+
+        .form-control {
+            margin-right: 10px;
+            padding: 4px;
+            border: 1px;
+            border-radius: 5px;
+            background-color: white;
+            width: 180px;
+            align-items: center;
+        }
+
+        .form-control::placeholder {
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .search-button {
+            background-color: #0a497e;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            padding: 7px 5px;
+            transition: 0.3s;
+            margin-left: 10px;
+            margin-right: 5px;
+        }
+
+        .search-button:hover {
+            background-color: #113a5c;
+            border-radius: 25px;
+        }
+
+        .navbar {
+            background-color: #0a497e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 20px;
+            box-shadow: 2px 2px 2px #ccc;
+        }
+
+        .navbar-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar-title h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .navbar-title p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .navbar-buttons {
+            display: flex; 
+            align-items: center; 
+        }
+
+        .navbar-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 7px 20px;
+            margin-left: 15px;
+            transition: background-color 0.5s;
+            border-radius: 20px;
+        }
+
+        .navbar-buttons a:hover {
+            background-color: #033863;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">
+            <h1>Special Issues</h1>
+            <p>Ciência da Computação</p>
+        </div>
+        <div class="navbar-buttons">
+            <a href="/" class="navbar-button">Home</a>
+            
+            <form action="{{ url_for('users_search') }}" method="POST">
+                <div class="search-form">
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Pesquisar palavras-chave" autofocus="autofocus" name="search-box" value="{{ session.get('search_value', '') }}">
+                </div>
+            </form>
+
+        </div>
+    </nav>
+    {% include '_messages.html' %}
+</body>
+</html>
+{% endblock content %}

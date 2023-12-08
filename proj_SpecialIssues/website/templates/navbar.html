@@ -16,26 +16,23 @@
         }
 
         .search-form {
-        display: flex; /* Torna os elementos filhos flexíveis para alinhamento */
-        align-items: center; /* Alinha verticalmente ao centro */
+            display: flex; /* Torna os elementos filhos flexíveis para alinhamento */
+            align-items: center; /* Alinha verticalmente ao centro */
         }
 
-
-        .form-control{
-            margin-right: 10px; 
+        .form-control {
+            margin-right: 10px;
             padding: 4px;
             border: 1px;
             border-radius: 5px;
             background-color: white;
             width: 180px;
             align-items: center;
-            
-            
         }
 
         .form-control::placeholder {
             font-size: 13px;
-            text-align:left;
+            text-align: left;
         }
 
         .search-button {
@@ -48,17 +45,11 @@
             transition: 0.3s;
             margin-left: 10px;
             margin-right: 5px;
-            
         }
 
         .search-button:hover {
             background-color: #113a5c;
             border-radius: 25px;
-        }
-
-        
-        .search-button i {
-            font-size: 15px; 
         }
 
         .navbar {
@@ -88,8 +79,8 @@
         }
 
         .navbar-buttons {
-            display: flex; /* Para criar um layout flexível */
-            align-items: center; /* Para alinhar verticalmente os elementos */
+            display: flex; 
+            align-items: center; 
         }
 
         .navbar-buttons a {
@@ -99,12 +90,19 @@
             margin-left: 15px;
             transition: background-color 0.5s;
             border-radius: 20px;
-
-            
         }
 
         .navbar-buttons a:hover {
             background-color: #033863;
+        }
+
+        .navbar-buttons a.sair-button {
+            background-color: #0a497e; /* Cor de fundo vermelha */
+            color: white;
+        }
+
+        .navbar-buttons a.sair-button:hover {
+            background-color: #033863; /* Cor de fundo vermelha escura ao passar o mouse */
         }
     </style>
 </head>
@@ -115,9 +113,9 @@
             <p>Ciência da Computação</p>
         </div>
         <div class="navbar-buttons">
-            <a href="/home" class="navbar-button">Home</a>
-            <a href="/inserirnovaspecialissue" class="navbar-button">Inserir Novas Special Issues</a>
-            <a href="/gerenciar" class="navbar-button">Gerenciar Special Issues</a>
+            <a href="/admin/home" class="navbar-button">Home</a>
+            <a href="/admin/inserirnovaspecialissue" class="navbar-button">Inserir Novas Special Issues</a>
+            <a href="/admin/gerenciar" class="navbar-button">Gerenciar Special Issues</a>
            
             <form action="{{ url_for('search') }}" method="POST">
                 <div class="search-form">
@@ -126,9 +124,12 @@
                 </div>
             </form>
 
+            {% if 'usuario' in session %}
+                <a href="{{ url_for('sair') }}" class="navbar-button sair-button">Sair</a>
+            {% endif %}
         </div>
     </nav>
+    {% include '_messages.html' %}
 </body>
-{% include '_messages.html' %}
 </html>
 {% endblock content %}

@@ -6,23 +6,29 @@ from .forms import RegistrationForm, login
 from .models import SPI, users
 import os
 
+from flask import Flask, session
+
 app.secret_key='123456789'
+app.config['SESSION_COOKIE_NAME'] = 'sessao'
+app.config['SESSION_PERMANENT'] = True
 
-@app.route('/home') #pagina inicial
+@app.route('/admin/home') #pagina inicial
 
-def home():
-    if 'usuario' not in session:
-        flash (f'Login necessário', 'danger')
-        return redirect(url_for('loginform'))
-    else:
-        per_page=10
-        page=request.args.get('page',type=int, default=1)
-        specialissues= SPI.query.order_by(SPI.prazo.asc()).paginate(page=page, per_page=per_page)       
+def admin_home():
+    
+    per_page=10
+    page=request.args.get('page',type=int, default=1)
+    specialissues= SPI.query.order_by(SPI.prazo.asc()).paginate(page=page, per_page=per_page)       
         
     return render_template ('admin/home.html', title= 'gerenciar', specialissues= specialissues)
 
+@app.route('/admin/sair')
+def sair():
+    session.pop('usuario', None)
+    flash('Você saiu da sessão', 'success')
+    return redirect(url_for('admin_home'))
 
-@app.route('/search', methods=['GET', 'POST'])
+@app.route('/admin/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
         form = request.form
@@ -44,7 +50,7 @@ def search():
     return render_template('admin/busca.html', specialissues=specialissues, search_value=search_value)
 
 
-@app.route('/', methods=['GET', 'POST']) 
+@app.route('/admin', methods=['GET', 'POST']) 
 def loginform():
     form = login(request.form)
     if request.method == "POST" and form.validate():
@@ -52,16 +58,14 @@ def loginform():
         
         if user and user.senha == form.senha.data:
             session['usuario'] = form.usuario.data
-            return redirect(url_for('home'))
+            return redirect(url_for('admin_home'))
         else:
             flash('Usuário não encontrado ou senha incorreta', 'danger')
             
     return render_template('admin/login.html', form=form, title='login')
 
-    
-    
 
-@app.route('/inserirnovaspecialissue', methods=['GET', 'POST']) #pagina de adicionar novas s.i
+@app.route('/admin/inserirnovaspecialissue', methods=['GET', 'POST']) #pagina de adicionar novas s.i
 def inserirnova():
     if 'usuario' not in session:
         flash (f'Login necessário', 'danger')
@@ -83,7 +87,7 @@ def inserirnova():
             
         return render_template('admin/inserirnova.html', form=form, title = "Página de envios")
     
-@app.route('/gerenciar', methods=['GET', 'POST'])
+@app.route('/admin/gerenciar', methods=['GET', 'POST'])
 def gerenciar():
     if 'usuario' not in session:
         flash (f'Login necessário', 'danger')
@@ -93,7 +97,7 @@ def gerenciar():
         
     return render_template ('admin/gerenciar.html', title= 'gerenciar', specialissues= specialissues)
 
-@app.route('/detalhes/<int:id>', methods=['GET'])
+@app.route('/admin/detalhes/<int:id>', methods=['GET'])
 def detalhes(id):
     if 'usuario' not in session:
         flash('Login necessário', 'danger')
@@ -104,9 +108,9 @@ def detalhes(id):
             return render_template('admin/detalhes.html', spi=spi, title='Detalhes do Special Issue')
         else:
             flash('Special Issue não encontrado', 'danger')
-            return redirect('/gerenciar')
+            return redirect('/admin/gerenciar')
 
-@app.route('/editar/<int:id>', methods=['GET', 'POST']) 
+@app.route('/admin/editar/<int:id>', methods=['GET', 'POST']) 
 def editar(id):
     if 'usuario' not in session:
         flash (f'Login necessário', 'danger')
@@ -135,17 +139,17 @@ def editar(id):
             if 'update' in request.form:
                 
                 flash('Special issue atualizada!', 'success')
-                return redirect('/gerenciar')
+                return redirect('/admin/gerenciar')
                     
             elif 'cancel' in request.form:
-                return redirect('/gerenciar')
+                return redirect('/admin/gerenciar')
             else:
                 flash('Todos os campos são obrigatórios!', 'danger')
 
     return render_template('admin/editar.html', spi=spi, title="Editar", form=form)
 
 
-@app.route('/deletar/<int:id>', methods=['GET', 'POST'])
+@app.route('/admin/deletar/<int:id>', methods=['GET', 'POST'])
 def deletar(id):
     spi = SPI.query.get(id) 
 
@@ -156,5 +160,5 @@ def deletar(id):
         db.session.delete(spi)
         db.session.commit()
         flash('Special Issue excluída!', 'success') 
-        return redirect('/gerenciar')
+        return redirect('/admin/gerenciar')
     return render_template('admin/gerenciar.html', spi=spi)

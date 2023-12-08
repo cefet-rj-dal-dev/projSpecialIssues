@@ -1,22 +1,34 @@
 <style>
-  /* Reduza o tamanho da caixa das mensagens flash */
-  
   .alert {
-      padding: 5px 10px; /* Ajuste o padding conforme necessário */
-      max-width: 300px;
-      list-style-type: none;
-      text-align: center;
-      position: absolute;
-      
+    padding: 5px 10px; 
+    max-width: 300px;
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    opacity: 1; 
+    transition: opacity 1s ease-in-out; 
   }
-  </style>
+
   
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <ul class="flashes">
+  .alert.fade-out {
+    opacity: 0;
+  }
+</style>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
       {% for category, message in messages %}
-        <li class="alert alert-{{ category }}">{{ message }}</li>
+        <li class="alert alert-{{ category }}">
+          {{ message }}
+          <script>
+            
+            setTimeout(function() {
+              document.querySelector('.alert').classList.add('fade-out');
+            }, 3000);
+          </script>
+        </li>
       {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+    </ul>
+  {% endif %}
+{% endwith %}

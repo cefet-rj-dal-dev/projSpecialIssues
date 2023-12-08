@@ -1,0 +1,107 @@
+<!-- atualizado-->
+
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'users/users_navbar.html' %}
+
+<style>
+    .container ul {
+        list-style-type: none; 
+    }
+
+    .container a {
+        color: #0a497e;
+        font-size: 22px;
+        margin-top: 50px;
+        text-decoration: none; 
+    }
+
+    .container a:hover {
+        text-decoration: underline; 
+        color: #123755;
+    }
+
+    .container p {
+        display: inline;
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
+    .container .aviso{
+        margin-bottom: 10px; 
+        display: block; 
+        margin-top: 25px;
+        font-size: 20px;
+    }
+
+
+    .container .special-issue {
+        margin-bottom: 10px; 
+        display: block; 
+        margin-top: 25px;
+    }
+    .col {
+        text-align: center;
+    }
+    .container .col a.btn-outline-primary {
+        background-color: white;
+        border-color: #0a497e;
+        color: #0a497e; 
+        transition-duration: 0s;
+        text-decoration: none;
+        width: 25px; 
+        height: 30px; 
+        font-size: medium;
+    }
+
+    .container .col a.btn-outline-primary:hover {
+        background-color: #0a497e;
+        border-color: #0a497e;
+        color: white; 
+    }
+
+    .container .col a.btn-primary {
+        background-color: #0a497e;
+        border-color: #0a497e;
+        color: white; 
+        transition-duration: 0s;
+        text-decoration: none;
+        width: 25px; 
+        height: 30px; 
+        font-size: medium;
+    }
+   
+</style>
+
+<div class="container">
+    <ul>
+        {% if specialissues.items %}
+            {% for spi in specialissues.items %}
+                <li class="special-issue">
+                    <h3><a href="{{ url_for('users_detalhes', id=spi.id) }}">{{ spi.titulo }}</a></h3>
+                    <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="aviso">Sem resultados para essa pesquisa</li>
+        {% endif %}
+    </ul>
+
+    <div class="col">
+        <form method="POST">
+            {% for page_num in specialissues.iter_pages() %}
+                {% if page_num %}
+                    {% if specialissues.page == page_num %}
+                        <a href="{{ url_for('users_search', page=page_num) }}" class="btn btn-primary btn-sm">{{ page_num }}</a>
+                    {% else %}
+                        <a href="{{ url_for('users_search', page=page_num) }}" class="btn btn-outline-primary btn-sm">{{ page_num }}</a>
+                    {% endif %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
