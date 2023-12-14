@@ -25,7 +25,7 @@
     <p><b>Data de Notificação:</b> {{ spi.datanot.strftime('%d/%m/%Y') }}</p>
     <p><b>Editora:</b> {{ spi.editora }}</p>
     <p><b>Revista:</b> {{ spi.revista }}</p>
-    <p><b>Link: </b>{{ spi.link }}</p>
+    <p><b>Link:</b> <a href="{{ spi.link }}" target="_blank">{{ spi.link }}</a></p>
     <p><b>Detalhes:</b> {{ spi.detalhes }}</p>
     
 </div>
