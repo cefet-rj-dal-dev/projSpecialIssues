@@ -72,7 +72,7 @@
     <ul>
         {% for spi in specialissues.items %}
         <li class="special-issue">
-            <h3><a href="/admin/detalhes/{{ spi.id }}">{{ spi.titulo }}</a></h3>
+            <h3><a href="/detalhes/{{ spi.id }}">{{ spi.titulo }}</a></h3>
             <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
             
         </li>
