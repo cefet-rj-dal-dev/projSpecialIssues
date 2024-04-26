@@ -17,7 +17,10 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       
-      <a class="navbar-brand me-auto" href="#">Special Issues</a>
+      <a class="navbar-brand me-auto" href="/admin/home">
+        <h1 class="titulo">Special Issues</h1>
+        <p class="subtitulo">Ciência da computação</p>
+      </a>
     
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
@@ -27,25 +30,28 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link mx-lg-1 active" aria-current="page" href="/admin/home">Home</a>
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/home' %}active{% endif %}" href="/admin/home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-1" href="/admin/inserirnovaspecialissue">Inserir Special Issues</a>
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/inserirnovaspecialissue' %}active{% endif %}" href="/admin/inserirnovaspecialissue">Inserir Special Issues</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-1" href="/admin/gerenciar">Gerenciar Special Issues</a>
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/gerenciar' %}active{% endif %}" href="/admin/gerenciar">Gerenciar Special Issues</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="d-flex">
-        <form class="form-inline" action="{{ url_for('search') }}" method="POST">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value="{{ session.get('search_value', '') }}" name="search-box">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form action="{{ url_for('search') }}" method="POST">
+          <div class="search-form">
+              <input type="text" class="form-control" placeholder="Pesquisar palavras-chave" autofocus="autofocus" name="search-box" value="{{ session.get('search_value', '') }}">
+              <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+
+          </div>
         </form>
         
         {% if 'usuario' in session %}
-              <a href="{{ url_for('sair') }}" class="navbar-button sair-button">Sair</a>
+              <a href="{{ url_for('sair') }}" class="sair-button">Sair</a>
         {% endif %}
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
