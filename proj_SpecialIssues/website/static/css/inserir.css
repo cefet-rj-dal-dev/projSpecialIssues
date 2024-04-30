@@ -1,0 +1,29 @@
+.resize-diagonal {
+    resize: both;
+    overflow: auto;
+}
+.btn {
+    background-color: #0a497e;
+    border-color: #0a497e;
+    color: white;
+    transition: background-color 0.5s; 
+}
+.btn:hover{
+    background-color: #113a5c;
+    border-color: #113a5c;;
+    color: white;
+}
+.h1-bg {
+    font-size: 40px;
+    text-align: center;
+    position: relative;
+}
+.h1-bg::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, white, #0a497e, white); 
+}

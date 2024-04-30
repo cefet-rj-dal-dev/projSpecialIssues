@@ -1,9 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-{% include 'navbar2.html' %}
+{% include 'navbar.html' %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/editar.css') }}">
+
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <div class="text-center h1 h1-bg" style="color: #0a497e; margin-top: 17px; font-size: 35px;"> Editar Special Issue </div>
 <div class="container my-4">
@@ -27,44 +30,13 @@
         </p>
     </form>
 </div>
-<style>
-   
-    .resize-diagonal {
-        resize: both;
-        overflow: auto;
-    }
-    .btn {
-        background-color: #0a497e;
-        border-color: #0a497e;
-        color: white;
-        transition: background-color 0.5s; 
-    }
-    .btn:hover{
-        background-color: #113a5c;
-        border-color: #113a5c;;
-        color: white;
-    }
-    .h1-bg {
-        font-size: 40px;
-        text-align: center;
-        position: relative;
-    }
-    .h1-bg::before {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(to right, white, #0a497e, white); 
-    }
-</style>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
       flatpickr(".datepicker", {
           dateFormat: "d/m/Y" 
-          appendTo: document.querySelector('.datepicker-wrapper') 
+         ,appendTo: document.querySelector('.datepicker-wrapper') 
 
       });
   });

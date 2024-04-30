@@ -3,18 +3,8 @@
 {% block content %}
 {% include 'users/users_navbar.html' %}
 
-<style>
-    .container h1 {
-        font-size: xx-large;
-        margin-top: 15px;
-        color: #0a497e;
-        margin-bottom: 15px;
-    }
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/detalhes.css') }}">
 
-    .container b {
-        color: #0a497e;
-    }
-</style>
 
 <div class="container">
     <h1>{{ spi.titulo }}</h1>
