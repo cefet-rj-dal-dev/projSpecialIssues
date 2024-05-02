@@ -10,7 +10,7 @@
   align-items: center;
   padding: 7px 20px;
   box-shadow: 2px 2px 2px #ccc;
-  position: relative;
+  position: relative!important;
 }
 
 .navbar-brand {
@@ -90,7 +90,7 @@
   outline: none;
 }
 .nav-link{
-  color:#fff;
+  color:#fff!important;
   font-weight: 500;
   position: relative;
   
@@ -134,23 +134,23 @@
   font-size: 25px;
 }
 
-@media only screen and (max-width: 431px) {
+@media only screen and (max-width: 514px) {
   .navbar {
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
+    flex-direction: column!important; 
+    justify-content: center!important; 
+    align-items: center!important; 
   }
   .navbar-brand {
-    margin-bottom: 10px;
-    align-items: center;
-    flex-direction: column; 
-    text-align: center; 
-    justify-content: center;
-    margin: auto;
+    margin-bottom: 10px!important;
+    align-items: center!important;
+    flex-direction: column!important; 
+    text-align: center!important; 
+    justify-content: center!important;
+    margin: auto!important;
   }
   .navbar-brand h1 {
     font-size: 30px;
-    justify-content: center;
+    justify-content: center!important;
   }
   .navbar-brand p {
     font-size: 15px;

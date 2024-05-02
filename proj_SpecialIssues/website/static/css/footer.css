@@ -1,0 +1,24 @@
+.footer-container, .footer-infos {
+    margin-top: 10px;
+    display: flex;
+    background-color: #83a5c0;
+    color: #e4e4e4; 
+    padding: 10px 0; 
+    align-items: center;
+    justify-content: center;
+}
+.footer-infos{
+    height: 40px;
+    justify-content: space-between;
+}
+.footer-link{
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+}
+.footer-link:hover{
+    color:#0a497e;
+}
+.info{
+    padding: 2px;
+}
