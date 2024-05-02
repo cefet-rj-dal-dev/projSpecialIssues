@@ -1,13 +1,13 @@
 .btn-login {
-    background-color: #0a497e;
-    border-color: #0a497e;
-    color: white;
-    transition: background-color 0.5s; 
+    background-color: #0a497e!important;
+    border-color: #0a497e!important;
+    color: white!important;
+    transition: 0.5s;
 }
 .btn-login:hover{
-    background-color: #113a5c;
-    border-color: #113a5c;
-    color: white;
+    background-color: #113a5c!important;
+    border-color: #113a5c!important;
+    color: white!important;
 }
 .login-box {
 width: 300px; 

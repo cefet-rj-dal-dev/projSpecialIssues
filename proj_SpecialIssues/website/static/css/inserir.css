@@ -3,15 +3,15 @@
     overflow: auto;
 }
 .btn {
-    background-color: #0a497e;
-    border-color: #0a497e;
+    background-color: #0a497e!important;
+    border-color: #0a497e!important;
     color: white;
-    transition: background-color 0.5s; 
+    transition: background-color 0.5s!important; 
 }
 .btn:hover{
-    background-color: #113a5c;
-    border-color: #113a5c;;
-    color: white;
+    background-color: #113a5c!important;
+    border-color: #113a5c!important;
+    color: white!important;
 }
 .h1-bg {
     font-size: 40px;
