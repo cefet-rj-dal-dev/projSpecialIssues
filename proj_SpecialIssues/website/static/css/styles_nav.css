@@ -43,7 +43,7 @@
   border: 1px;
   border-radius: 5px;
   background-color: white;
-  width: 180px;
+  width: 180px!important;
   align-items: center;
 }
 
@@ -82,13 +82,18 @@
 }
 
 .navbar-toggler{
-  border:none;
+  border:none!important;
   font-size: 1.15rem;
 }
 .navbar-toggler:focus, .btn-close:focus{
-  box-shadow: none;
-  outline: none;
+  box-shadow: none!important;
+  outline: none!important;
 }
+#toggler{
+  color:#fff!important;
+  font-size: 30px!important;
+}
+
 .nav-link{
   color:#fff!important;
   font-weight: 500;
