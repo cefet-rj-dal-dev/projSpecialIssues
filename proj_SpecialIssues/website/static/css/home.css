@@ -51,7 +51,7 @@
         background-color: #0a497e;
         border-color: #0a497e;
         color: white; 
-        transition-duration: 0s;
+        transition: 0.2s;
         text-decoration: none;
         width: 25px; 
         height: 30px; 

@@ -8,3 +8,9 @@
     color: #0a497e;
     
 }
+@media only screen and (min-width: 514px) {
+    .container{
+        height: 100vh;
+    }
+   
+  }
