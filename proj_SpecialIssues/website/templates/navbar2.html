@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Issues</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles_nav.css') }}">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      
+      <a class="navbar-brand me-auto" href="/admin/home">
+        <h1 class="titulo">Special Issues</h1>
+        <p class="subtitulo">Ciência da computação</p>
+      </a>
+    
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Special Issues</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/home' %}active{% endif %}" href="/admin/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/inserirnovaspecialissue' %}active{% endif %}" href="/admin/inserirnovaspecialissue">Inserir Special Issues</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-1 {% if request.path == '/admin/gerenciar' %}active{% endif %}" href="/admin/gerenciar">Gerenciar Special Issues</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="d-flex">
+        <form action="{{ url_for('search') }}" method="POST">
+          <div class="search-form">
+              <input type="text" class="form-control" placeholder="Pesquisar palavras-chave" autofocus="autofocus" name="search-box" value="{{ session.get('search_value', '') }}">
+              <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+
+          </div>
+        </form>
+        
+        {% if 'usuario' in session %}
+              <a href="{{ url_for('sair') }}" class="sair-button">Sair</a>
+        {% endif %}
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    </div>
+  </nav>
+    {% include '_messages.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock content %}
