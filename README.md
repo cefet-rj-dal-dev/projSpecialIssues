@@ -7,7 +7,7 @@ Além de armazenar, o site irá mostrar as Special Issues disponíveis e permiti
 ```
 pip install virtualenv
 python -m virtualenv myvenv
-myvenv/Scripts/Activate (Windows)
+myvenv\Scripts\Activate (Windows)
 source myvenv/bin/activate (Linux ou macOS) 
 ```
 - Instalar as dependências do projeto
