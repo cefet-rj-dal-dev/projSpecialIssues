@@ -14,3 +14,7 @@ source myvenv/bin/activate (Linux ou macOS)
 ```
 pip install -r requirements.txt
 ```
+- Rodar o projeto
+```
+python app.py
+```
