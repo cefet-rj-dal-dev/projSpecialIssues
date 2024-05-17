@@ -3,6 +3,10 @@ Esse projeto tem como objetivo desenvolver (em python, com auxilio da biblioteca
 Além de armazenar, o site irá mostrar as Special Issues disponíveis e permitirá que um admin. insira novas chamadas.
 ## Como rodar o projeto
 - Após clonar o repositório, abrir um terminal:
+- Entrar na pasta do projeto:
+```
+cd proj_SpecialIssues
+```
 - Instalar o ambiente virtual
 ```
 pip install virtualenv
