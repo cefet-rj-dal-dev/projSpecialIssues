@@ -79,7 +79,7 @@ def inserirnova():
             sucesso=True
             if sucesso:
                 if 'submit_and_back' in request.form:
-                    return redirect('/home')
+                    return redirect(url_for('admin_home'))
                 elif 'submit_and_insert' in request.form:
                     return render_template('admin/inserirnova.html', form=form)
                 else:
