@@ -1,0 +1,44 @@
+<style>
+  .alert-container {
+    position: fixed;
+    z-index: 9999; /* Garante que o alerta esteja sempre por cima */
+  }
+  .alert {
+    padding: 5px 10px;
+    max-width: 300px;
+    list-style-type: none;
+    text-align: center;
+    position: fixed;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999; /* Garante que a mensagem esteja sempre acima de outros elementos */
+  }
+
+  .alert.fade-out {
+    opacity: 0;
+  }
+</style>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="alert-container">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    <script>
+      // Remove o alerta após um período de tempo
+      setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+          alert.classList.add('fade-out');
+          alert.addEventListener('transitionend', function() {
+            alert.remove(); // Remove o alerta da DOM após a transição
+          });
+        });
+      }, 1000);
+    </script>
+  {% endif %}
+{% endwith %}

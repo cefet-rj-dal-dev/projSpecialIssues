@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gerenciar.css') }}">
+
+
+<div class="container" method="POST">
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Editora</th>
+                <th>Revista</th>
+                <th>Título</th>
+                <th>Link</th>
+                <th>Prazo de submissão</th>
+                <th>Data de notificação</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+            </thead>
+            <tbody>
+                {% for spi in specialissues %}
+                <tr>
+                    <td>{{ spi.id }}</td>
+                    <td>{{ spi.editora }}</td>
+                    <td>{{ spi.revista }}</td>
+                    <td>{{ spi.titulo }}</td>
+                    <td>{{ spi.link }}</td>
+                    <td>{{ spi.prazo.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ spi.datanot.strftime('%d/%m/%Y') }}</td>
+                    <td>
+                        <form action="/admin/editar/{{ spi.id }}">
+                            <button type="submit" name="editar" class="btn btn-control btn-sm">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/admin/deletar/{{ spi.id }}" method="POST" onsubmit="return confirmDelete();">
+                            <button type="submit" name="deletar" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function confirmDelete() {
+        
+        return window.confirm("Tem certeza de que deseja excluir este item?");
+
+       
+    }
+</script>
+{% include 'footer.html' %}
+
+{% endblock content %}
