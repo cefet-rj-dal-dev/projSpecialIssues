@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/editar.css') }}">
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<div class="text-center h1 h1-bg" style="color: #0a497e; margin-top: 17px; font-size: 35px;"> Editar Special Issue </div>
+<div class="container my-4">
+
+    {% from "suporteenvio.html" import render_field %}
+    <form method="post" enctype="multipart/form-data">
+        <div class="text-center">
+            {{ render_field(form.editora, class="form-control-sm", value=spi.editora)}}
+            {{ render_field(form.revista, class="form-control-sm", value=spi.revista)}}
+            {{ render_field(form.titulo, class="form-control-sm", value=spi.titulo)}}
+            {{ render_field(form.link, class="form-control-sm", value=spi.link)}}
+            {{ render_field(form.prazo, class="form-control-sm datepicker",value=spi.prazo) }}
+            {{ render_field(form.datanot, class="form-control-sm datepicker", value=spi.datanot)}}
+            <div class="text-center">
+                <label for="{{ form.detalhes.id }}" style="font-weight: bold;">Detalhes</label>
+            </div>
+            <div class="text-center">
+                <textarea name="{{ form.detalhes.name }}" id="{{ form.detalhes.id }}" class="form-control-sm resize-vertical" rows="3">{{ form.detalhes.data }}</textarea>
+            </div>
+
+        </div>
+        <p class="text-center">
+            <div class="mt-3 text-center">
+                <button type="submit" name="update" class="btn btn-primary">Editar</button>
+    <button type="submit" name="cancel" class="btn btn-success">Cancelar</button>
+            </div>
+        </p>
+    </form>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      flatpickr(".datepicker", {
+          dateFormat: "d/m/Y" 
+         appendTo: document.querySelector('.datepicker-wrapper') 
+
+      });
+  });
+</script>
+{% include 'footer.html' %}
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+<!-- atualizado-->
+
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/busca.css') }}">
+
+<div class="container">
+    <ul>
+        {% if specialissues.items %}
+            {% for spi in specialissues.items %}
+                <li class="special-issue">
+                    <h3><a href="{{ url_for('detalhes', id=spi.id) }}">{{ spi.titulo }}</a></h3>
+                    <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="aviso">Sem resultados para essa pesquisa</li>
+        {% endif %}
+    </ul>
+
+    <div class="col">
+        <form method="POST">
+            {% for page_num in specialissues.iter_pages() %}
+                {% if page_num %}
+                    {% if specialissues.page == page_num %}
+                        <a href="{{ url_for('search', page=page_num) }}" class="btn btn-primary btn-sm">{{ page_num }}</a>
+                    {% else %}
+                        <a href="{{ url_for('search', page=page_num) }}" class="btn btn-outline-primary btn-sm">{{ page_num }}</a>
+                    {% endif %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+        </form>
+    </div>
+</div>
+{% include 'footer.html' %}
+
+{% endblock content %}
