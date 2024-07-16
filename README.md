@@ -1,6 +1,9 @@
 ## Projeto Special Issues
 Esse projeto tem como objetivo desenvolver (em python, com auxilio da biblioteca flask) um website que armazena Special Issues de diferentes revistas de artigos na área de ciência da computação. 
-Além de armazenar, o site irá mostrar as Special Issues disponíveis e permitirá que um admin. insira novas chamadas.
+Além de armazenar, o site mostra as Special Issues disponíveis e permite que um admin. insira novas chamadas.
+
+- O site está disponível em https://rukbat.eic.cefet-rj.br/special/
+  
 ## Como rodar o projeto
 - Após clonar o repositório, abrir um terminal:
 - Entrar na pasta do projeto:
