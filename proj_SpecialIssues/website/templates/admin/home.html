@@ -1,41 +1,40 @@
-
-
 {% extends 'layout.html' %}
 {% block content %}
 {% include 'navbar.html' %}
 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
 
-
-
 <div class="container">
-    <ul>
+    <div class="row">
         {% for spi in specialissues.items %}
-        <li class="special-issue">
-            <h3><a href="/detalhes/{{ spi.id }}">{{ spi.titulo }}</a></h3>
-            <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
-            
-        </li>
+        <div class="col-md-12"> 
+            <div class="card special-issue">
+                <a href="/admin/detalhes/{{ spi.id }}" style="text-decoration: none; color: inherit;"> <!-- Link cobrindo todo o cartão -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ spi.titulo }}</h5>
+                        <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+                        <p class="description">{{ spi.detalhes[:300] }}...</p> <!-- Exibir os primeiros 200 caracteres da descrição -->
+                    </div>
+                </a>
+            </div>
+        </div>
         {% endfor %}
+    </div>
 
-        <div class="col">
-            {% for page_num in specialissues.iter_pages() %}
-            {% if page_num%}
-
+    <div class="col text-center">
+        {% for page_num in specialissues.iter_pages() %}
+        {% if page_num %}
             {% if specialissues.page == page_num %}
-            <a href="{{url_for('admin_home', page=page_num)}}" class="btn btn-primary btn-sm">{{page_num}}</a>
+            <a href="{{ url_for('home', page=page_num) }}" class="btn btn-primary btn-sm">{{ page_num }}</a>
             {% else %}
-            <a href="{{url_for('admin_home', page=page_num)}}" class="btn btn-outline-primary btn-sm">{{page_num}}</a>
+            <a href="{{ url_for('home', page=page_num) }}" class="btn btn-outline-primary btn-sm">{{ page_num }}</a>
             {% endif %}
-            {% else %}
+        {% else %}
             ...
-            {% endif %}
-            {% endfor %}</div>
-        
-
-    </ul>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
+
 {% include 'footer.html' %}
-
-
 {% endblock content %}
