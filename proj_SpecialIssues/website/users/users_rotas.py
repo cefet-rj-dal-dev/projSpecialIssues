@@ -8,7 +8,7 @@ from website.adm.models import SPI
 
 @app.route('/')
 def home():
-    per_page = 10
+    per_page = 5
     page = request.args.get('page', type=int, default=1)
     specialissues = SPI.query.order_by(SPI.prazo.asc()).paginate(page=page, per_page=per_page)
     return render_template('users/users_home.html', title='Home para Usuários', specialissues=specialissues)
@@ -30,15 +30,23 @@ def users_search():
         search_value = form['search-box']
         session['search_value'] = search_value  # Armazena na sessão
         search = f"%{search_value}%"
-        specialissues = SPI.query.filter(SPI.titulo.like(search)).paginate(page=1, per_page=10)
+        
+        # Atualiza a consulta para incluir tanto título quanto descrição
+        specialissues = SPI.query.filter(
+            SPI.titulo.like(search) | SPI.detalhes.like(search)
+        ).paginate(page=1, per_page=5)
+        
         return render_template('users/users_busca.html', specialissues=specialissues, search_value=search_value)
+    
     else:
         page = request.args.get('page', 1, type=int)
-        per_page = 10
+        per_page = 5
 
         search_value = session.get('search_value', '')  # Obtém da sessão
         if page == 1 and search_value:
-            specialissues = SPI.query.filter(SPI.titulo.like(f"%{search_value}%")).paginate(page=1, per_page=10)
+            specialissues = SPI.query.filter(
+                SPI.titulo.like(f"%{search_value}%") | SPI.detalhes.like(f"%{search_value}%")
+            ).paginate(page=1, per_page=10)
         else:
             specialissues = SPI.query.paginate(page=page, per_page=per_page)
 

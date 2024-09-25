@@ -1,25 +1,30 @@
-<!-- atualizado-->
-
 {% extends 'layout.html' %}
 {% block content %}
 {% include 'users/users_navbar.html' %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/busca.css') }}">
 
 <div class="container">
-    <ul>
+    <div class="row">
         {% if specialissues.items %}
             {% for spi in specialissues.items %}
-                <li class="special-issue">
-                    <h3><a href="{{ url_for('users_detalhes', id=spi.id) }}">{{ spi.titulo }}</a></h3>
-                    <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
-                </li>
+                <div class="col-md-12">
+                    <div class="card special-issue">
+                        <a href="{{ url_for('users_detalhes', id=spi.id) }}" style="text-decoration: none; color: inherit;"> <!-- Link cobrindo todo o cartão -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{ spi.titulo }}</h5>
+                                <p class="date">Prazo para submissão: {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
+                                <p class="description">{{ spi.detalhes[:300] }}...</p> <!-- Exibir os primeiros 200 caracteres da descrição -->
+                            </div>
+                        </a>
+                    </div>
+                </div>
             {% endfor %}
         {% else %}
             <li class="aviso">Sem resultados para essa pesquisa</li>
         {% endif %}
-    </ul>
+    </div>
 
-    <div class="col">
+    <div class="col text-center">
         <form method="POST">
             {% for page_num in specialissues.iter_pages() %}
                 {% if page_num %}

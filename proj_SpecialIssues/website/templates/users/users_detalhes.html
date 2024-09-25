@@ -1,19 +1,20 @@
-<!--atualizar no meu pc-->
 {% extends 'layout.html' %}
 {% block content %}
 {% include 'users/users_navbar.html' %}
 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/detalhes.css') }}">
 
-
 <div class="container">
-    <h1>{{ spi.titulo }}</h1>
-    <p><b>Prazo para submissão:</b> {{ spi.prazo.strftime('%d/%m/%Y') }}</p>
-    <p><b>Data de Notificação:</b> {{ spi.datanot.strftime('%d/%m/%Y') }}</p>
-    <p><b>Editora:</b> {{ spi.editora }}</p>
-    <p><b>Revista:</b> {{ spi.revista }}</p>
-    <p><b>Link:</b> <a href="{{ spi.link }}" target="_blank">{{ spi.link }}</a></p>
-    <p><b>Detalhes:</b> {{ spi.detalhes|safe }}</p>
+    <h1 class="special-issue-title">{{ spi.titulo }}</h1>
+    <div class="special-issue-details">
+        <p><b>Prazo para submissão:</b> <span>{{ spi.prazo.strftime('%d/%m/%Y') }}</span></p>
+        <p><b>Data de Notificação:</b> <span>{{ spi.datanot.strftime('%d/%m/%Y') }}</span></p>
+        <p><b>Editora:</b> <span>{{ spi.editora }}</span></p>
+        <p><b>Revista:</b> <span>{{ spi.revista }}</span></p>
+        <p><b>Link:</b> <a href="{{ spi.link }}" target="_blank">{{ spi.link }}</a></p>
+        <p><b>Detalhes:</b></p>
+        <p class="description">{{ spi.detalhes|safe }}</p>
+    </div>
 </div>
 
 {% include 'footer.html' %}

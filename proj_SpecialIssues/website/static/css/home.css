@@ -1,62 +1,80 @@
+* {
+    box-sizing: border-box; /* Inclui padding e border no tamanho total dos elementos */
+}
 
-    .container ul {
-        list-style-type: none; 
-    }
+html, body {
+    height: 100%; /* Faz com que o body ocupe 100% da altura da tela */
+    margin: 0; /* Remove margens padrão */
+}
 
-    .container a {
-        color: #0a497e;
-        font-size:22px;
-        margin-top: 50px;
-        text-decoration: none; 
-    }
+.container {
+    display: flex;
+    flex-direction: column; /* Coloca os filhos em coluna */
+    flex: 1; /* Faz com que o container ocupe o espaço restante */
+    padding: 20px; /* Padding para o container */
+    min-height: calc(100vh - 100px); /* Garante que o container tenha altura mínima */
+    margin-top: 20px;
+}
 
-    .container a:hover {
-        text-decoration: underline; 
-        color: #123755;
-    }
+.row {
+    margin: 0; /* Remover margens para que os cartões ocupem toda a largura */
+}
 
-    .container p {
-        display: inline;
-        margin-right: 10px;
-        font-size: 15px;
-    }
+.col-md-12 {
+    margin-bottom: 20px; /* Espaço entre os cartões */
+}
 
-    .container .special-issue {
-        margin-bottom: 10px; 
-        display: block; 
-        margin-top: 25px;
-    }
-    .col{
-        text-align: center;
-    }
-    .container .col a.btn-outline-primary {
-        background-color: white;
-        border-color: #0a497e;
-        color: #0a497e; 
-        transition-duration: 0s;
-        text-decoration: none;
-        width: 25px; 
-        height: 30px; 
-        
-        font-size: medium;
-        
-    }
+.special-issue {
+    border: 1px solid rgba(248, 248, 248, 0.5); /* Borda clara e sutil com menor opacidade */
+    border-radius: 10px; /* Cantos mais arredondados */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05), /* Sombra mais suave */
+                0 1px 2px rgba(0, 0, 0, 0.03); /* Sombra mais leve */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transições suaves */
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+}
 
-    .container .col a.btn-outline-primary:hover {
-        background-color: #0a497e;
-        border-color: #0a497e;
-        color: white; 
-    }
-    .container .col a.btn-primary {
-        background-color: #0a497e;
-        border-color: #0a497e;
-        color: white; 
-        transition: 0.2s;
-        text-decoration: none;
-        width: 25px; 
-        height: 30px; 
-        
-        font-size: medium;
-        
-    }
-   
+.special-issue:hover {
+    transform: translateY(-3px); /* Reduz o movimento no hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), /* Sombra mais suave ao passar o mouse */
+                0 2px 4px rgba(0, 0, 0, 0.06); /* Efeito mais sutil */
+}
+
+.card-body {
+    padding: 20px; /* Padding mais espaçado */
+}
+
+.card-title {
+    font-size: 20px; /* Aumenta o tamanho da fonte do título */
+    color: #0a497e;
+}
+
+.date {
+    color: #555; /* Cor mais suave */
+    margin-bottom: 10px; /* Espaço abaixo da data */
+}
+
+.description {
+    font-size: 16px; /* Tamanho da fonte da descrição */
+    color: #777; /* Cor para a descrição */
+}
+
+.btn.btn-primary.btn-sm {
+    background-color: #0a497e;
+    border-color: #0a497e;
+}
+
+.col.text-center {
+    margin-bottom: 20px;
+}
+
+.btn.btn-outline-primary.btn-sm {
+    border-color: #0a497e;
+    color: #0a497e;
+}
+
+.btn.btn-outline-primary.btn-sm:hover {
+    border-color: #0a497e;
+    color: white;
+    background-color: #0a497e;
+}

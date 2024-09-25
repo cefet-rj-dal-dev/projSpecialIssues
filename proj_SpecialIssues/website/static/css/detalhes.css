@@ -1,16 +1,52 @@
-.container h1{
-    font-size: xx-large;
-    margin-top: 15px;
+* {
+    box-sizing: border-box; /* Inclui padding e border no tamanho total dos elementos */
+}
+
+html, body {
+    height: 100%; /* Faz com que o body ocupe 100% da altura da tela */
+    margin: 0; /* Remove margens padrão */
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Coloca os filhos em coluna */
+    flex: 1; /* Faz com que o container ocupe o espaço restante */
+    padding: 20px; /* Padding para o container */
+    min-height: calc(100vh - 100px); /* Garante que o container tenha altura mínima */
+}
+
+.special-issue-title {
+    font-size: 28px; /* Aumenta o tamanho da fonte do título */
     color: #0a497e;
     margin-bottom: 15px;
 }
-.container b{
-    color: #0a497e;
-    
+
+.special-issue-details {
+    border: 1px solid #e0e0e0; /* Borda leve */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 20px; /* Padding para espaçamento interno */
+    background-color: #ffffff; /* Cor de fundo suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-@media only screen and (min-width: 514px) {
-    .container{
-        height: 100vh;
-    }
-   
-  }
+
+.special-issue-details p {
+    margin: 10px 0; /* Margem entre os parágrafos */
+}
+
+.special-issue-details b {
+    color: #0a497e; /* Cor do texto em negrito */
+}
+
+.description {
+    color: #555; /* Cor mais suave para a descrição */
+    margin-top: 10px; /* Espaço acima da descrição */
+}
+
+a {
+    color: #0a497e; /* Cor do link */
+    text-decoration: underline; /* Sublinhado para links */
+}
+
+a:hover {
+    color: #123755; /* Cor do link ao passar o mouse */
+}
